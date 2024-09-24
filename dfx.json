@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "ecom_backend": {
+      "main": "src/ecom_backend/main.mo",
+      "type": "motoko"
+    },
+    "ecom_frontend": {
+      "dependencies": [
+        "ecom_backend"
+      ],
+      "source": [
+        "src/ecom_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ecom_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
