@@ -1,31 +1,35 @@
-import { useState } from 'react';
-import { ecom_backend } from 'declarations/ecom_backend';
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  TopBar,
+  Home,
+  Shop,
+  Cart,
+  Contact,
+  NotFoundPage,
+  Header,
+} from "./pages/index";
+import Footer from "./common/Footer";
+import MidHeader from "./common/MidHeader";
 
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    ecom_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
+const App = () => {
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div>
+      <Router>
+        <TopBar />
+        <MidHeader />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </div>
   );
-}
+};
 
 export default App;
